@@ -1,9 +1,11 @@
 import express from "express";
 import path from "path";
 
-import assetsRouter from "./src/routes/assets";
+import { apiRouter, assetsRouter } from "./src/routes";
 
 const app = express();
+
+app.use("/api/v1", apiRouter);
 
 app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "static/index.html"));
