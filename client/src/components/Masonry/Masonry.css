@@ -1,0 +1,19 @@
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(
+    var(--columns),
+    calc((100% - (var(--columns) - 1) * 20px) / var(--columns))
+  );
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.masonry__column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.masonry__img {
+  width: 100%;
+}

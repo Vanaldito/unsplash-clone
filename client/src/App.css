@@ -9,8 +9,17 @@
   padding: 32px 30px;
 }
 
+.masonry-container {
+  max-width: 400px;
+  margin: 35px auto 0;
+}
+
 @media (min-width: 900px) {
   .app {
     padding: 32px 90px;
+  }
+
+  .masonry-container {
+    max-width: 1300px;
   }
 }
