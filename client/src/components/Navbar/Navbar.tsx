@@ -3,7 +3,7 @@ import AddImageButton from "../AddImageButton/AddImageButton";
 import "./Navbar.css";
 
 interface NavbarProps {
-  uploadImage: (imageLink: string) => void;
+  uploadImage: (imageLink: string, label: string) => void;
 }
 
 export default function Navbar({ uploadImage }: NavbarProps) {

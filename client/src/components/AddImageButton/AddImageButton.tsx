@@ -4,25 +4,30 @@ import { Modal } from "../Modal";
 import "./AddImageButton.css";
 
 interface AddImageButtonProps {
-  uploadImage: (imageLink: string) => void;
+  uploadImage: (imageLink: string, label: string) => void;
 }
 
 export default function AddImageButton({ uploadImage }: AddImageButtonProps) {
   const [displayModal, setDisplayModal] = useState(false);
   const [imageLink, setImageLink] = useState("");
+  const [label, setLabel] = useState("");
 
   function clickHandler() {
     setDisplayModal(true);
   }
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  function changeImageLink(event: React.ChangeEvent<HTMLInputElement>) {
     setImageLink(event.target.value);
+  }
+
+  function changeLabel(event: React.ChangeEvent<HTMLInputElement>) {
+    setLabel(event.target.value);
   }
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    imageLink && uploadImage(imageLink);
+    imageLink && label && uploadImage(imageLink, label);
 
     closeModal();
   }
@@ -30,6 +35,7 @@ export default function AddImageButton({ uploadImage }: AddImageButtonProps) {
   function closeModal() {
     setDisplayModal(false);
     setImageLink("");
+    setLabel("");
   }
 
   return (
@@ -42,10 +48,19 @@ export default function AddImageButton({ uploadImage }: AddImageButtonProps) {
           <h2 className="add-photo__title">Add a new photo</h2>
           <form onSubmit={submitHandler} className="add-photo__form">
             <label className="add-photo__label">
+              Label
+              <input
+                type="text"
+                onChange={changeLabel}
+                className="add-photo__field"
+                placeholder="A beautiful landscape"
+              />
+            </label>
+            <label className="add-photo__label">
               Photo URL
               <input
                 type="text"
-                onChange={changeHandler}
+                onChange={changeImageLink}
                 className="add-photo__field"
                 placeholder="https://images.unsplash.com/photo-1665499403166-8ad7d367a43b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
               />

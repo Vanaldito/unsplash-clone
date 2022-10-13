@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { Image, Masonry, Navbar } from "./components";
 import { addImage, getImages } from "./services";
+import { ImageInfo } from "./models";
 
 import "./App.css";
 
 export default function App() {
-  const [images, setImages] = useState<Array<string>>([]);
+  const [imagesInfo, setImagesInfo] = useState<Array<ImageInfo>>([]);
 
   useEffect(() => {
-    getImages().then(images => setImages(images));
+    getImages().then(info => setImagesInfo(info));
   }, []);
 
-  function uploadImage(imageLink: string) {
-    addImage(imageLink).then(data => {
+  function uploadImage(imageLink: string, label: string) {
+    addImage(imageLink, label).then(data => {
       if (data.status === 200) {
-        setImages(images => [imageLink, ...images]);
+        setImagesInfo(info => [{ imageLink, label }, ...info]);
       }
     });
   }
@@ -24,8 +25,8 @@ export default function App() {
       <Navbar uploadImage={uploadImage} />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
-          {images.map((image, index) => (
-            <Image src={image} key={index} />
+          {imagesInfo.map((info, index) => (
+            <Image src={info.imageLink} key={index} />
           ))}
         </Masonry>
       </div>
