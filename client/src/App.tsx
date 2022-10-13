@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Masonry, Navbar } from "./components";
 import { getImages } from "./services";
 
@@ -11,13 +11,28 @@ export default function App() {
     getImages().then(images => setImages(images));
   }, []);
 
+  function errorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>) {
+    const current = event.target as HTMLImageElement;
+
+    const defaultImageRelativeURL = "/default-image.svg";
+
+    const currentIsDefaultImage =
+      current.src ===
+        `${location.protocol}//${location.host}${defaultImageRelativeURL}` ||
+      current.src === defaultImageRelativeURL;
+
+    if (!currentIsDefaultImage) {
+      current.src = defaultImageRelativeURL;
+    }
+  }
+
   return (
     <main className="app">
       <Navbar />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
           {images.map((image, index) => (
-            <img src={image} key={index} onLoad={() => console.log("Hi")} />
+            <img src={image} key={index} onError={errorHandler} />
           ))}
         </Masonry>
       </div>
