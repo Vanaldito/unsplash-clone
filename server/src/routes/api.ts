@@ -20,4 +20,22 @@ apiRouter.get("/get-images", (_req, res) => {
   res.json({ images });
 });
 
+apiRouter.post("/upload-image", (req, res) => {
+  const imageLink = req.body.imageLink;
+
+  if (typeof imageLink !== "string")
+    return res.status(400).json({ status: 400, error: "Image link not valid" });
+
+  if (
+    !/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test(
+      imageLink
+    )
+  )
+    return res.status(400).json({ status: 400, error: "Image link not valid" });
+
+  images.unshift(imageLink);
+
+  res.json({ status: 200 });
+});
+
 export default apiRouter;

@@ -5,6 +5,7 @@ import { apiRouter, assetsRouter } from "./src/routes";
 
 const app = express();
 
+app.use(express.json());
 app.use("/api/v1", apiRouter);
 
 app.get("/", (_req, res) => {
