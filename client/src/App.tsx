@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Masonry, Navbar } from "./components";
-import { getImages } from "./services";
+import { addImage, getImages } from "./services";
 
 import "./App.css";
 
@@ -26,9 +26,17 @@ export default function App() {
     }
   }
 
+  function uploadImage(imageLink: string) {
+    addImage(imageLink).then(data => {
+      if (data.status === 200) {
+        setImages(images => [imageLink, ...images]);
+      }
+    });
+  }
+
   return (
     <main className="app">
-      <Navbar />
+      <Navbar uploadImage={uploadImage} />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
           {images.map((image, index) => (
