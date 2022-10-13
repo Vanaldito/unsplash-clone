@@ -1,0 +1,93 @@
+.add-photo-button {
+  background-color: #3db46d;
+  color: #fff;
+  box-shadow: 0px 1px 6px 0px #0000001a;
+  padding: 10px 12px;
+  white-space: nowrap;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.add-photo-button:hover {
+  background-color: #39975f;
+}
+
+.add-photo__title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.add-photo__label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #4f4f4f;
+  margin-bottom: 20px;
+}
+
+.add-photo__field {
+  font-size: 14px;
+  width: 500px;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 15px;
+  border: 1px solid #4f4f4f;
+  filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, 0.1));
+}
+
+.add-photo__field::placeholder {
+  color: #bdbdbd;
+}
+
+.add-photo__buttons {
+  text-align: right;
+}
+
+.add-photo__button--secondary {
+  background-color: #fff;
+  color: #bdbdbd;
+  padding: 10px 12px;
+  white-space: nowrap;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.add-photo__button--secondary:hover {
+  color: #8f8f8f;
+}
+
+.add-photo__button--primary {
+  background-color: #3db46d;
+  color: #fff;
+  box-shadow: 0px 1px 6px 0px #0000001a;
+  padding: 10px 12px;
+  white-space: nowrap;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.add-photo__button--primary:hover {
+  background-color: #39975f;
+}
+
+@media (min-width: 900px) {
+  .add-photo-button {
+    margin: 0 0 0 auto;
+  }
+
+  .add-photo-button,
+  .add-photo__button--primary,
+  .add-photo__button--secondary {
+    padding: 17px 20px 14px;
+    font-size: 16px;
+  }
+
+  .add-photo__field {
+    padding: 18px;
+  }
+}
