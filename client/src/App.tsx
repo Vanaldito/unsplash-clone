@@ -26,7 +26,7 @@ export default function App() {
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
           {imagesInfo.map((info, index) => (
-            <Image src={info.imageLink} key={index} />
+            <Image src={info.imageLink} label={info.label} key={index} />
           ))}
         </Masonry>
       </div>

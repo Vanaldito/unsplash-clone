@@ -1,8 +1,11 @@
+import "./Image.css";
+
 interface ImageProps {
   src: string;
+  label: string;
 }
 
-export default function Image({ src }: ImageProps) {
+export default function Image({ src, label }: ImageProps) {
   function errorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>) {
     const current = event.target as HTMLImageElement;
 
@@ -18,5 +21,12 @@ export default function Image({ src }: ImageProps) {
     }
   }
 
-  return <img src={src} onError={errorHandler} />;
+  return (
+    <div className="image-container">
+      <img className="image" src={src} onError={errorHandler} />
+      <div className="image-hover">
+        <span className="image-hover__label">{label}</span>
+      </div>
+    </div>
+  );
 }
