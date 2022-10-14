@@ -1,7 +1,16 @@
 import express from "express";
 import path from "path";
+import dotenv from "dotenv";
+import { connect } from "mongoose";
 
 import { apiRouter, assetsRouter } from "./src/routes";
+
+dotenv.config({ path: ".env.local" });
+
+const { MONGODB_URI } = process.env;
+
+MONGODB_URI &&
+  connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const app = express();
 
