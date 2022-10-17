@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Loader } from "../Loader";
 import "./Image.css";
 
 interface ImageProps {
@@ -6,6 +8,8 @@ interface ImageProps {
 }
 
 export default function Image({ src, label }: ImageProps) {
+  const [loading, setLoading] = useState(true);
+
   function errorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>) {
     const current = event.target as HTMLImageElement;
 
@@ -23,7 +27,13 @@ export default function Image({ src, label }: ImageProps) {
 
   return (
     <div className="image-container">
-      <img className="image" src={src} onError={errorHandler} />
+      {loading && <Loader />}
+      <img
+        className="image"
+        src={src}
+        onError={errorHandler}
+        onLoad={() => setLoading(false)}
+      />
       <div className="image-hover">
         <span className="image-hover__label">{label}</span>
       </div>
