@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Image, Masonry, Navbar } from "../../components";
 import { ImageInfo } from "../../models";
 import { addImage, searchImages as search } from "../../services";
@@ -9,8 +9,6 @@ import "./Search.css";
 export default function Search() {
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("q");
-
-  const navigate = useNavigate();
 
   const [imagesInfo, setImagesInfo] = useState<Array<ImageInfo>>([]);
 
@@ -31,13 +29,9 @@ export default function Search() {
     });
   }
 
-  function searchImages(query: string) {
-    navigate(`/search?q=${query}`);
-  }
-
   return (
     <main className="search">
-      <Navbar uploadImage={uploadImage} searchImages={searchImages} />
+      <Navbar uploadImage={uploadImage} />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
           {imagesInfo.map((info, index) => (

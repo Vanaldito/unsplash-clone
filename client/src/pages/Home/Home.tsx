@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Image, Masonry, Navbar } from "../../components";
 import { ImageInfo } from "../../models";
 import { addImage, getImages } from "../../services";
@@ -7,8 +6,6 @@ import { addImage, getImages } from "../../services";
 import "./Home.css";
 
 export default function Home() {
-  const navigate = useNavigate();
-
   const [imagesInfo, setImagesInfo] = useState<Array<ImageInfo>>([]);
 
   useEffect(() => {
@@ -23,13 +20,9 @@ export default function Home() {
     });
   }
 
-  function searchImages(query: string) {
-    navigate(`/search?q=${query}`);
-  }
-
   return (
     <main className="home">
-      <Navbar uploadImage={uploadImage} searchImages={searchImages} />
+      <Navbar uploadImage={uploadImage} />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
           {imagesInfo.map((info, index) => (
