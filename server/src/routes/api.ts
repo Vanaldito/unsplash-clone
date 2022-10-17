@@ -49,7 +49,10 @@ apiRouter.get("/search", async (req, res) => {
       .json({ status: 400, error: "Query string not valid" });
 
   const results = await ImageInfo.find({
-    label: { $regex: `${queryString}`, $options: "i" },
+    label: {
+      $regex: `${queryString.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`,
+      $options: "i",
+    },
   });
 
   return res.json({ status: 200, results });
