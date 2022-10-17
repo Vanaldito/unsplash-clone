@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Image, Masonry, Navbar } from "./components";
-import { addImage, getImages } from "./services";
+import { addImage, getImages, searchImages as search } from "./services";
 import { ImageInfo } from "./models";
 
 import "./App.css";
@@ -20,9 +20,17 @@ export default function App() {
     });
   }
 
+  function searchImages(query: string) {
+    search(query).then(data => {
+      if (data.status === 200 && "results" in data) {
+        setImagesInfo(data.results);
+      }
+    });
+  }
+
   return (
     <main className="app">
-      <Navbar uploadImage={uploadImage} />
+      <Navbar uploadImage={uploadImage} searchImages={searchImages} />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>
           {imagesInfo.map((info, index) => (
