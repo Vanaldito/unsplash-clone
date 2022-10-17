@@ -29,7 +29,7 @@ export default function Image({ src, label }: ImageProps) {
     <div className="image-container">
       {loading && <Loader />}
       <img
-        className="image"
+        className={`image${loading ? " image--loading" : ""}`}
         src={src}
         onError={errorHandler}
         onLoad={() => setLoading(false)}
