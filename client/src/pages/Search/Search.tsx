@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Image, Masonry, Navbar } from "../../components";
 import { ImageInfo } from "../../models";
-import { addImage, getImages } from "../../services";
+import { addImage, searchImages as search } from "../../services";
 
-import "./Home.css";
+import "./Search.css";
 
-export default function Home() {
+export default function Search() {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get("q");
+
   const navigate = useNavigate();
 
   const [imagesInfo, setImagesInfo] = useState<Array<ImageInfo>>([]);
 
   useEffect(() => {
-    getImages().then(info => setImagesInfo(info));
-  }, []);
+    if (!query) return;
+    search(query).then(data => {
+      if (data.status === 200 && "results" in data) {
+        setImagesInfo(data.results);
+      }
+    });
+  }, [query]);
 
   function uploadImage(imageLink: string, label: string) {
     addImage(imageLink, label).then(data => {
@@ -28,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <main className="home">
+    <main className="search">
       <Navbar uploadImage={uploadImage} searchImages={searchImages} />
       <div className="masonry-container">
         <Masonry columns={3} breakPoint={700}>

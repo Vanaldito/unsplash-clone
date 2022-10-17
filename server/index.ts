@@ -21,6 +21,10 @@ app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "static/index.html"));
 });
 
+app.get("/search", (_req, res) => {
+  res.sendFile(path.join(__dirname, "static/index.html"));
+});
+
 /* Add your routes here */
 
 // Remember remove the assets router in production
