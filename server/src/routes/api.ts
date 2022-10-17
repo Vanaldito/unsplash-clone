@@ -40,4 +40,19 @@ apiRouter.post("/upload-image", async (req, res) => {
   res.json({ status: 200 });
 });
 
+apiRouter.get("/search", async (req, res) => {
+  const queryString = req.query.q?.toString();
+
+  if (!queryString)
+    return res
+      .status(400)
+      .json({ status: 400, error: "Query string not valid" });
+
+  const results = await ImageInfo.find({
+    label: { $regex: `${queryString}`, $options: "i" },
+  });
+
+  return res.json({ status: 200, results });
+});
+
 export default apiRouter;
