@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AddImageButton } from "../AddImageButton";
 import { SearchBar } from "../SearchBar";
 
@@ -10,9 +11,9 @@ interface NavbarProps {
 export default function Navbar({ uploadImage }: NavbarProps) {
   return (
     <nav className="navbar">
-      <a className="navbar__logo" href="/">
+      <Link className="navbar__logo" to="/">
         <img src="/unsplash-logo.svg" />
-      </a>
+      </Link>
       <SearchBar />
       <AddImageButton uploadImage={uploadImage} />
     </nav>
