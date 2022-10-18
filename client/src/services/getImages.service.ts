@@ -1,7 +1,10 @@
-import { ImageInfo } from "../models";
+import { FetchCall } from "../models";
 
-export default async function getImages(): Promise<Array<ImageInfo>> {
-  const res = await fetch("/api/v1/get-images");
-  const data = await res.json();
-  return data.images;
+export default function getImages(): FetchCall {
+  const controller = new AbortController();
+
+  return {
+    call: fetch("/api/v1/get-images", { signal: controller.signal }),
+    controller,
+  };
 }

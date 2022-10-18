@@ -1,16 +1,10 @@
-import { ImageInfo } from "../models";
+import { FetchCall } from "../models";
 
-interface Error {
-  status: number;
-  error: string;
-}
+export default function searchImages(query: string): FetchCall {
+  const controller = new AbortController();
 
-interface Ok {
-  status: 200;
-  results: ImageInfo[];
-}
-
-export default async function searchImages(query: string): Promise<Error | Ok> {
-  const res = await fetch(`/api/v1/search?q=${query}`);
-  return await res.json();
+  return {
+    call: fetch(`/api/v1/search?q=${query}`, { signal: controller.signal }),
+    controller,
+  };
 }
