@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SearchIcon } from "../Icons";
 
 import "./SearchBar.css";
 
@@ -38,7 +39,7 @@ export default function SearchBar() {
         type="submit"
         onClick={clickHandler}
       >
-        Search
+        <SearchIcon />
       </button>
       <input
         ref={input}

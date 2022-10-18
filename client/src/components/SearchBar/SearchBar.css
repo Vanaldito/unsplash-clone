@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.search-bar__button:hover {
+  color: #444;
+}
+
 @media (min-width: 900px) {
   .search-bar__field {
     padding: 16px 20px 15px 10px;
