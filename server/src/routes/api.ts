@@ -53,7 +53,7 @@ apiRouter.get("/search", async (req, res) => {
       $regex: `${queryString.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`,
       $options: "i",
     },
-  });
+  }).sort({ _id: -1 });
 
   return res.json({ status: 200, results });
 });
