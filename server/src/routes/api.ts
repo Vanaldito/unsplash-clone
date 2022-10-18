@@ -58,4 +58,32 @@ apiRouter.get("/search", async (req, res) => {
   return res.json({ status: 200, results });
 });
 
+apiRouter.delete("/delete-image", async (req, res) => {
+  const id = req.body.id;
+  const password = req.body.password;
+
+  if (typeof id !== "string" || typeof password !== "string")
+    return res
+      .status(400)
+      .json({ status: 400, error: "Id or password not valid" });
+
+  const { DELETE_IMAGE_PASSWORD } = process.env;
+
+  if (!DELETE_IMAGE_PASSWORD || password !== DELETE_IMAGE_PASSWORD) {
+    return res.status(401).json({ status: 401, error: "Unauthorized" });
+  }
+
+  let deleted;
+  try {
+    deleted = await ImageInfo.findByIdAndDelete(id);
+  } catch {
+    deleted = null;
+  }
+
+  if (!deleted)
+    return res.status(404).json({ status: 404, error: "Image not found" });
+
+  res.json({ status: 200 });
+});
+
 export default apiRouter;
