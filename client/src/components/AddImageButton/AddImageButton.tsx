@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "../Button";
 import { Modal } from "../Modal";
 
 import "./AddImageButton.css";
@@ -40,9 +41,14 @@ export default function AddImageButton({ uploadImage }: AddImageButtonProps) {
 
   return (
     <>
-      <button className="add-photo-button" type="button" onClick={clickHandler}>
+      <Button
+        color="primary"
+        className="add-photo-button"
+        type="button"
+        onClick={clickHandler}
+      >
         Add photo
-      </button>
+      </Button>
       {displayModal && (
         <Modal closeModal={closeModal}>
           <h2 className="add-photo__title">Add a new photo</h2>
@@ -66,16 +72,12 @@ export default function AddImageButton({ uploadImage }: AddImageButtonProps) {
               />
             </label>
             <div className="add-photo__buttons">
-              <button
-                className="add-photo__button--secondary"
-                type="button"
-                onClick={closeModal}
-              >
+              <Button color="secondary" type="button" onClick={closeModal}>
                 Cancel
-              </button>
-              <button className="add-photo__button--primary" type="submit">
+              </Button>
+              <Button color="primary" type="submit">
                 Submit
-              </button>
+              </Button>
             </div>
           </form>
         </Modal>

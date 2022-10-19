@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../Button";
 import { SearchIcon } from "../Icons";
 
 import "./SearchBar.css";
@@ -34,13 +35,9 @@ export default function SearchBar() {
 
   return (
     <form className="search-bar" onSubmit={submitHandler}>
-      <button
-        className="search-bar__button"
-        type="submit"
-        onClick={clickHandler}
-      >
+      <Button color="secondary" type="submit" onClick={clickHandler}>
         <SearchIcon />
-      </button>
+      </Button>
       <input
         ref={input}
         onChange={changeHandler}

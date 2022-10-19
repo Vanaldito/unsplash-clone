@@ -1,0 +1,35 @@
+.button--color-primary,
+.button--color-secondary {
+  cursor: pointer;
+  border-radius: 12px;
+  border: none;
+  white-space: nowrap;
+  padding: 10px 12px;
+}
+
+.button--color-primary {
+  background-color: #3db46d;
+  color: #fff;
+  box-shadow: 0px 1px 6px 0px #0000001a;
+}
+
+.button--color-primary:hover {
+  background-color: #39975f;
+}
+
+.button--color-secondary {
+  background-color: #fff;
+  color: #bdbdbd;
+}
+
+.button--color-secondary:hover {
+  color: #8f8f8f;
+}
+
+@media (min-width: 900px) {
+  .button--color-primary,
+  .button--color-secondary {
+    padding: 17px 20px 14px;
+    font-size: 16px;
+  }
+}

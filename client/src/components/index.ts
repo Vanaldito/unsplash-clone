@@ -6,3 +6,4 @@ export * from "./AddImageButton";
 export * from "./SearchBar";
 export * from "./Loader";
 export * from "./Icons";
+export * from "./Button";
