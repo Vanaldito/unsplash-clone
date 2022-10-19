@@ -1,7 +1,7 @@
 import "./Button.css";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color: "primary" | "secondary";
+  color: "primary" | "secondary" | "delete" | "danger";
 }
 
 export default function Button({
